@@ -1,4 +1,5 @@
-import React, {useState} from "react" 
+import {React,  useState } from "react"
+
 
 function Formulario() {
     const [peso, setPeso] = useState(0);
@@ -8,7 +9,7 @@ function Formulario() {
     function calculoImc(e) {
         setPeso(e.target.value);
     }
-    
+
     function calcularIMC() {
         let imc;
         imc = peso / altura / altura;
@@ -16,24 +17,24 @@ function Formulario() {
     }
 
     return (
-        <div>
+        <div className="container">
             <h1>Calculadora IMC</h1> <br />
 
             <form>
-                <label htmlFor="peso">Peso:</label> <br/>
-                <input type="number" name="peso" value={peso} id="peso"onChange={calculoImc}/>
+                <label htmlFor="peso">Peso:</label> <br />
+                <input className="form-input" type="number" name="peso" value={peso} id="peso" onChange={calculoImc} />
 
-                <br/><br/>
+                <br /><br />
 
-                <label htmlFor="altura">Altura:</label> <br/> 
-                <input type="number" name="altura" value={altura} id="altura" onChange={e => setAltura(e.target.value)}/>
+                <label htmlFor="altura">Altura:</label> <br />
+                <input className="input" type="number" name="altura" value={altura} id="altura" onChange={e => setAltura(e.target.value)} />
 
-                <br/><br/>
+                <br /><br />
 
-                <input type="button" value="Calcular IMC" onClick={calcularIMC}/>
+                <input className="btn" type="button" value="Calcular IMC" onClick={calcularIMC} />
 
-                <br/><br/>
-                <b>Seu imc</b>: {valorIMC}
+                <br /><br />
+                <b>Seu imc</b>: {valorIMC.toFixed(2)}
             </form>
         </div>
     )
