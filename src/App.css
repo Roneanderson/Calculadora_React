@@ -9,14 +9,17 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-.container input {
-  color: #FFF;
+  .dispo {
   font-size: 20px;
   font-family: Popins;
   border: 1px solid #FFF;
   border-radius: 8px;
   width: 100%;
+}
+
+label {
+  font-size: 20px;
+  color: #FFF;
 }
 
 .btn {
@@ -26,5 +29,6 @@ body {
   justify-content: space-between;
   border-radius: 8px;
   border: none;
+  cursor: pointer;
 }
 
