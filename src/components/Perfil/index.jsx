@@ -1,53 +1,39 @@
-import { useEffect, useState } from "react"
+import { React, useState } from "react"
 
-const Formulario = () => {
-    let[peso, setPeso] = useState(0);
-    let[altura, setAltura] = useState(0);
-    let[resultado, setResultado] = useState(0)
-    const[nome, setNome] = useState('');
 
-    useEffect(() => {
-        console.log("o componente iniciou");
+function Formulario() {
+    const [peso, setPeso] = useState(0);
+    const [altura, setAltura] = useState(0);
+    let [resultado, setResultado] = useState(null);
 
-        return () => {
-            console.log("o componente finalizou")
-        }
-    }, []);
-
-    useEffect(() => {
-        console.log("estado mudou");
-    }, [nome]);
-
-    const alteraNome = (evento) => {
-        setNome(estadoAnterior => {
-            console.log(estadoAnterior);
-            return evento.target.value;
-        })
+    const calcularIMC = (evento) => {
+        evento.preventDefault();
+        const imc = peso / (altura * altura)
+        setResultado(imc)
     }
 
-        const rederizaResultado = () => {
-        const soma = peso / altura / altura;
-        const media = soma;
+    const rederizaResultado = () => {
+        if (resultado === null) {
+            return null
+        }
 
-        if (media <= 18,50) {
+        if (resultado <= 18.5) {
             return (
-                <p>Olá {nome}, seu IMC é {media} Peso Normal</p>
-            )
-        } else {
-            return (
-                <p>Olá {nome}, seu IMC é {media} abaixo do peso</p>
+                <p>ola seu IMC e {resultado.toFixed(2)}. Abaixo do peso</p>
             )
         }
-    }
 
+    }
     return (
-        <form>
-            <input type="text" placeholder="Seu nome" onChange={alteraNome} />
-            <input type="number" placeholder="Digite seu peso" onChange={evento => setPeso(parseFloat(evento.target.value))}/>
-            <input type="number" placeholder="Digite sua altura" onChange={evento => setAltura(parseFloat(evento.target.value))}/>
-            <button type="btn" onClick={setResultado} onChange={resultado}>Calcular</button>
-            {rederizaResultado()}
-        </form>
+        <div className="container">
+            <h1>Calculadora IMC</h1> <br />
+            <form>
+                <input type="number" onChange={evento => setPeso(evento.target.value)} placeholder="digite seu peso" /><br />
+                <input type="number" onChange={evento => setAltura(evento.target.value)} placeholder="digite seu altura" /> <br />
+                <button type="submit" onClick={calcularIMC}>Calcular</button>
+                {rederizaResultado()}
+            </form>
+        </div>
     )
 }
 
